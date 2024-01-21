@@ -37,9 +37,10 @@ class _BottomChatFieldState extends State<BottomChatField> {
                 text: value,
                 date: DateTime.now(),
               );
-              context.read<ChatCubit>().updateMessages(message);
+              if (value.isNotEmpty) {
+                context.read<ChatCubit>().updateMessages(message);
+              }
               messageController.clear();
-
             },
             minLines: 1,
             maxLines: 5,
@@ -48,11 +49,12 @@ class _BottomChatFieldState extends State<BottomChatField> {
             ),
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
-                filled: true,
-                fillColor: Color(0xFFEDF2F6),
-                contentPadding: EdgeInsets.symmetric(
-                    vertical: 0, horizontal: DesignDimens.bigPadding),
-                hintText: "Сообщение"),
+              filled: true,
+              fillColor: Color(0xFFEDF2F6),
+              contentPadding: EdgeInsets.symmetric(
+                  vertical: 0, horizontal: DesignDimens.bigPadding),
+              hintText: "Сообщение",
+            ),
           ),
         ),
         DesignDimens.mediumPadding.horizontalBox,
