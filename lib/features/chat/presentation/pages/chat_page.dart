@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:messenger_ui/features/chat/design_dimens.dart';
 import 'package:messenger_ui/features/chat/domain/entities/chat_entity.dart';
 import 'package:messenger_ui/features/chat/presentation/pages/bottom_chat_field.dart';
 import 'package:messenger_ui/features/chat/presentation/pages/chat_list.dart';
@@ -27,9 +28,14 @@ class _ChatPageState extends State<ChatPage> {
       body: Column(
         children: [
           Expanded(
-                child: ChatList(),
-              ),
+            child: ChatList(),
+          ),
+          Divider(
+            height: 0,
+          ),
+          DesignDimens.largePadding.verticalBox,
           BottomChatField(),
+          DesignDimens.largePadding.verticalBox
         ],
       ),
     );
