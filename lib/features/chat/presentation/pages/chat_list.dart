@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +11,9 @@ import 'package:messenger_ui/features/chat/presentation/widgets/my_message.dart'
 import 'package:messenger_ui/features/chat/presentation/widgets/sender_message.dart';
 
 class ChatList extends StatefulWidget {
-  const ChatList({super.key, });
+  const ChatList({
+    super.key,
+  });
 
   @override
   State<ChatList> createState() => _ChatListState();
@@ -28,11 +29,11 @@ class _ChatListState extends State<ChatList> {
 
   @override
   Widget build(BuildContext context) {
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      messageController.jumpTo(messageController.position.maxScrollExtent);
-    });
     return BlocBuilder<ChatCubit, ChatState>(
       builder: (context, chatState) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          messageController.jumpTo(messageController.position.maxScrollExtent);
+        });
         return GroupedListView<MessageEntity, DateTime>(
           controller: messageController,
           elements: chatState.messages,
@@ -40,7 +41,7 @@ class _ChatListState extends State<ChatList> {
               DateTime(msg.date.year, msg.date.month, msg.date.day),
           groupSeparatorBuilder: (date) => buildGroupSeparator(date),
           indexedItemBuilder: (context, banquet, pos) =>
-              buildBanquetItem(context, banquet),
+              buildBanquetItem(context, banquet,),
         );
       },
     );
